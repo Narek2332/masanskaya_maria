@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информационные технологии в исследовании стратегий преодоления кризисных событий у онкопациентов</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            background-color: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            display: block;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: var(--secondary);
+        }
+        
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        .glossary-term {
+            background-color: var(--light);
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .glossary-term h4 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        .test-question {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .test-options {
+            margin: 1rem 0;
+        }
+        
+        .test-option {
+            margin-bottom: 0.5rem;
+        }
+        
+        .test-result {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: var(--light);
+        }
+        
+        .mind-map {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .mind-map img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .author-info {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--secondary);
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Информационные технологии в исследовании стратегий преодоления кризисных событий у онкопациентов</h1>
+            <p class="author-info">
+                Автор: Масанская Мария Игоревна<br>
+                Магистрант кафедры психологии образования<br>
+                Белорусский государственный педагогический университет имени Максима Танка
+            </p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#intro">Главная</a></li>
+                <li><a href="#theory">Теоретический модуль</a></li>
+                <li><a href="#technology">Технологический модуль</a></li>
+                <li><a href="#perspectives">Перспективы и этика</a></li>
+                <li><a href="#glossary">Глоссарий</a></li>
+                <li><a href="#tests">Задания для самоконтроля</a></li>
+                <li><a href="#materials">Материалы</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="intro">
+            <h2>О проекте</h2>
+            <div class="card">
+                <p>Данный дистанционный курс посвящен анализу потенциала информационных технологий в исследовании и реализации стратегий преодоления кризисных событий у онкологических пациентов на этапе лечения.</p>
+                
+                <h3>Цель курса</h3>
+                <p>Проанализировать возможности информационных технологий в изучении и формировании эффективных стратегий преодоления кризисных событий у онкологических пациентов.</p>
+                
+                <h3>Задачи исследования</h3>
+                <ul>
+                    <li>Проанализировать психологическую природу кризисных состояний у онкологических пациентов</li>
+                    <li>Исследовать современные информационные технологии, применяемые в поддержке онкологических пациентов</li>
+                    <li>Выявить эффективные стратегии преодоления кризисных событий, реализуемые через информационные технологии</li>
+                    <li>Оценить перспективы развития телереабилитации и цифровых форм поддержки онкологических пациентов</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="theory">
+            <h2>Теоретический модуль</h2>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'approaches')">Методологические подходы</button>
+                <button class="tab" onclick="openTab(event, 'experience')">Переживание кризисных событий</button>
+            </div>
+            
+            <div id="approaches" class="tab-content active">
+                <div class="card">
+                    <h3>Методологические подходы к изучению стратегий преодоления кризисных событий</h3>
+                    
+                    <div class="grid">
+                        <div class="card">
+                            <h4>Системный подход</h4>
+                            <p>Рассматривает личность как сложную открытую систему, находящуюся в постоянном взаимодействии с социальной средой.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Структурно-функциональный подход</h4>
+                            <p>Основывается на выделении основных компонентов процесса совладания и анализе их взаимосвязей.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Динамический подход</h4>
+                            <p>Акцентирует внимание на процессуальных характеристиках совладающего поведения и его изменениях во времени.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Когнитивный подход</h4>
+                            <p>Основывается на анализе познавательных процессов, лежащих в основе оценки ситуации и выбора способов совладания.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Эмоционально-регулятивный подход</h4>
+                            <p>Рассматривает стратегии преодоления через призму эмоциональной регуляции и управления аффективными состояниями.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Ресурсный подход</h4>
+                            <p>Акцентирует внимание на анализе внутренних и внешних ресурсов личности, определяющих возможности эффективного совладания.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="experience" class="tab-content">
+                <div class="card">
+                    <h3>Переживание кризисных событий онкопациентами</h3>
+                    
+                    <p>Онкологический диагноз нередко становится для человека одним из самых тяжёлых кризисных событий, затрагивая не только соматическое, но и психическое, социальное, духовное измерение его жизни.</p>
+                    
+                    <h4>Ключевые аспекты переживания кризиса:</h4>
+                    <ul>
+                        <li>Эмоциональное потрясение, схожее с острой реакцией на стресс</li>
+                        <li>Тревога, депрессия, нарушение сна, навязчивые мысли о болезни</li>
+                        <li>Ощущение утраты контроля и неопределённости будущего</li>
+                        <li>Экзистенциальный дистресс - переживание утраты смысла жизни, страха смерти</li>
+                        <li>Диагностический шок - состояние в первые дни после постановки диагноза</li>
+                    </ul>
+                    
+                    <h4>Факторы влияния на переживание кризиса:</h4>
+                    <ul>
+                        <li>Личностные особенности (устойчивость, локус контроля)</li>
+                        <li>Предыдущий опыт совладания с трудностями</li>
+                        <li>Социальная поддержка</li>
+                        <li>Качество коммуникации с медицинским персоналом</li>
+                        <li>Доступ к информации о заболевании и лечении</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mind-map">
+                <h3>Ментальная карта: Методологические подходы</h3>
+                <div style="background-color: #f0f8ff; padding: 20px; border-radius: 8px; text-align: left;">
+                    <div style="text-align: center; font-weight: bold; margin-bottom: 15px;">Методологические подходы к изучению копинг-стратегий</div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+                        <div style="background: #e3f2fd; padding: 10px; border-radius: 5px; width: 150px;">Системный подход</div>
+                        <div style="background: #e8f5e9; padding: 10px; border-radius: 5px; width: 150px;">Структурно-функциональный</div>
+                        <div style="background: #fff3e0; padding: 10px; border-radius: 5px; width: 150px;">Динамический подход</div>
+                        <div style="background: #fce4ec; padding: 10px; border-radius: 5px; width: 150px;">Когнитивный подход</div>
+                        <div style="background: #e0f2f1; padding: 10px; border-radius: 5px; width: 150px;">Эмоционально-регулятивный</div>
+                        <div style="background: #f3e5f5; padding: 10px; border-radius: 5px; width: 150px;">Ресурсный подход</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="technology">
+            <h2>Технологический модуль</h2>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'classification')">Классификация ИТ</button>
+                <button class="tab" onclick="openTab(event, 'role')">Роль ИТ в исследовании</button>
+                <button class="tab" onclick="openTab(event, 'analysis')">Анализ данных</button>
+            </div>
+            
+            <div id="classification" class="tab-content active">
+                <div class="card">
+                    <h3>Классификация информационных технологий в исследовании онкопациентов</h3>
+                    
+                    <div class="grid">
+                        <div class="card">
+                            <h4>Технологии сбора данных</h4>
+                            <ul>
+                                <li>Электронные анкеты и онлайн-опросы</li>
+                                <li>Мобильные приложения (mHealth)</li>
+                                <li>Носимые устройства (wearables)</li>
+                                <li>Электронные дневники самонаблюдения</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Технологии анализа данных</h4>
+                            <ul>
+                                <li>Радиомика и анализ медицинских изображений</li>
+                                <li>OMIC-технологии (геномика, протеомика)</li>
+                                <li>Большие данные (Big Data)</li>
+                                <li>Машинное обучение и ИИ</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Коммуникационные технологии</h4>
+                            <ul>
+                                <li>Информационно-коммуникационные платформы</li>
+                                <li>Телемедицина и телереабилитация</li>
+                                <li>Онлайн-сообщества пациентов</li>
+                                <li>Системы обмена сообщениями с медперсоналом</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="role" class="tab-content">
+                <div class="card">
+                    <h3>Роль информационных технологий в изучении и формировании копинг-стратегий</h3>
+                    
+                    <div class="grid">
+                        <div class="card">
+                            <h4>Объективизация данных</h4>
+                            <p>Создание "цифрового фенотипа" поведения через непрерывный мониторинг физиологических и поведенческих показателей.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Персонализированный анализ</h4>
+                            <p>Выявление индивидуальных траекторий совладания и прогнозирование рисков дезадаптации.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Оперативная обратная связь</h4>
+                            <p>Just-in-time adaptive interventions (JITAIs) - предоставление поддержки в нужный момент.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Системный интегрирующий анализ</h4>
+                            <p>Построение холлистических моделей адаптации, объединяющих биомедицинские и психосоциальные данные.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="analysis" class="tab-content">
+                <div class="card">
+                    <h3>Статистический анализ и машинное обучение</h3>
+                    
+                    <h4>Статистические методы:</h4>
+                    <ul>
+                        <li>Оценка выживаемости (анализ кривых выживаемости)</li>
+                        <li>Многомерный анализ (регрессионный анализ)</li>
+                        <li>Корреляционный анализ</li>
+                    </ul>
+                    
+                    <h4>Машинное обучение:</h4>
+                    <ul>
+                        <li>Классификация пациентов (Random Forest, SVM)</li>
+                        <li>Прогнозное моделирование (градиентный бустинг)</li>
+                        <li>Кластеризация для выявления фенотипов (k-средних)</li>
+                    </ul>
+                    
+                    <h4>Визуализация результатов:</h4>
+                    <ul>
+                        <li>Линейные графики для отображения динамики</li>
+                        <li>Столбчатые диаграммы для сравнения категорий</li>
+                        <li>Диаграммы рассеяния для корреляционного анализа</li>
+                        <li>Интерактивные дашборды для комплексного представления данных</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="perspectives">
+            <h2>Перспективы и этические аспекты</h2>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'ethics')">Этические вызовы</button>
+                <button class="tab" onclick="openTab(event, 'integration')">Интеграция в здравоохранение</button>
+            </div>
+            
+            <div id="ethics" class="tab-content active">
+                <div class="card">
+                    <h3>Этические и правовые вызовы</h3>
+                    
+                    <div class="grid">
+                        <div class="card">
+                            <h4>Защита персональных данных</h4>
+                            <p>Электронные медицинские карты и мобильные приложения аккумулируют конфиденциальную информацию о здоровье пациентов.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Алгоритмическая предвзятость</h4>
+                            <p>Системы ИИ могут формировать неверные выводы из-за неполноты или однобокости исходных данных.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Цифровое неравенство</h4>
+                            <p>Социально уязвимые группы (пожилые, пациенты с низкой цифровой грамотностью) оказываются в зоне риска.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Этическая ответственность</h4>
+                            <p>Вопрос ответственности за ошибки, допущенные автоматизированными системами.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="integration" class="tab-content">
+                <div class="card">
+                    <h3>Перспективы интеграции ИТ в систему здравоохранения</h3>
+                    
+                    <div class="grid">
+                        <div class="card">
+                            <h4>Национальные онкологические регистры</h4>
+                            <p>Внедрение ИТ в системы учета и мониторинга онкологических заболеваний.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Интеграция с ЭМК</h4>
+                            <p>Объединение медицинской, психологической и социальной информации в электронных медицинских картах.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Развитие телемедицины</h4>
+                            <p>Внедрение платформ, объединяющих видеоконсультации, мобильные приложения и системы поддержки.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Междисциплинарные проекты</h4>
+                            <p>Совместная работа онкологов, психологов, IT-специалистов над созданием комплексных решений.</p>
+                        </div>
+                    </div>
+                    
+                    <h4>Перспективные направления:</h4>
+                    <ul>
+                        <li>Предиктивная аналитика для прогнозирования рисков кризисных состояний</li>
+                        <li>Создание "умных" предиктивных моделей</li>
+                        <li>Обеспечение широкого и равного доступа пациентов к инновационным инструментам</li>
+                        <li>Разработка этических стандартов и правового регулирования в области цифрового здоровья</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="glossary">
+            <h2>Глоссарий</h2>
+            
+            <div class="glossary-term">
+                <h4>Копинг-стратегия</h4>
+                <p>Осознанные усилия личности по преодолению стрессовых ситуаций, направленные на устранение или уменьшение воздействия стрессора.</p>
+            </div>
+            
+            <div class="glossary-term">
+                <h4>Телереабилитация</h4>
+                <p>Комплекс реабилитационных ассистирующих мероприятий и учебных образовательных программ, которые предоставляются пациенту дистанционно, посредством телекоммуникационных и компьютерных технологий.</p>
+            </div>
+            
+            <div class="glossary-term">
+                <h4>Цифровой фенотип</h4>
+                <p>Совокупность поведенческих и физиологических данных, собираемых с помощью цифровых устройств (смартфонов, носимых устройств) для создания объективного профиля состояния пациента.</p>
+            </div>
+            
+            <div class="glossary-term">
+                <h4>Радиомика</h4>
+                <p>Метод анализа медицинских изображений (КТ, МРТ, ПЭТ) с преобразованием их в извлекаемые количественные данные для поддержки принятия клинических решений.</p>
+            </div>
+            
+            <div class="glossary-term">
+                <h4>Большие данные (Big Data)</h4>
+                <p>Технологии работы с большими объемами разнородных данных, характеризующихся высокой скоростью поступления и многообразием форматов.</p>
+            </div>
+            
+            <div class="glossary-term">
+                <h4>JITAI (Just-in-Time Adaptive Interventions)</h4>
+                <p>Персонализированные интервенции, которые предоставляются в нужный момент и в нужном контексте на основе анализа данных в реальном времени.</p>
+            </div>
+            
+            <div class="glossary-term">
+                <h4>mHealth (мобильное здоровье)</h4>
+                <p>Использование мобильных устройств (смартфонов, планшетов) и носимых технологий для мониторинга здоровья и оказания медицинской помощи.</p>
+            </div>
+            
+            <div class="glossary-term">
+                <h4>OMIC-технологии</h4>
+                <p>Совокупность методов, включающих геномику, транскриптомику, протеомику, метаболомику, направленных на комплексное изучение биологических систем.</p>
+            </div>
+        </section>
+        
+        <section id="tests">
+            <h2>Задания для самоконтроля</h2>
+            
+            <div class="test-question">
+                <h3>Вопрос 1: Что такое копинг-стратегия?</h3>
+                <div class="test-options">
+                    <div class="test-option">
+                        <input type="radio" name="q1" value="a"> a) Метод лечения онкологических заболеваний
+                    </div>
+                    <div class="test-option">
+                        <input type="radio" name="q1" value="b"> b) Осознанные усилия личности по преодолению стрессовых ситуаций
+                    </div>
+                    <div class="test-option">
+                        <input type="radio" name="q1" value="c"> c) Технология сбора медицинских данных
+                    </div>
+                </div>
+                <button class="btn" onclick="checkAnswer(1, 'b')">Проверить ответ</button>
+                <div class="test-result" id="result1"></div>
+            </div>
+            
+            <div class="test-question">
+                <h3>Вопрос 2: Какие из перечисленных технологий относятся к методам сбора данных?</h3>
+                <div class="test-options">
+                    <div class="test-option">
+                        <input type="checkbox" name="q2" value="a"> a) Электронные анкеты
+                    </div>
+                    <div class="test-option">
+                        <input type="checkbox" name="q2" value="b"> b) Носимые устройства
+                    </div>
+                    <div class="test-option">
+                        <input type="checkbox" name="q2" value="c"> c) Радиомика
+                    </div>
+                    <div class="test-option">
+                        <input type="checkbox" name="q2" value="d"> d) Мобильные приложения
+                    </div>
+                </div>
+                <button class="btn" onclick="checkMultipleAnswer(2, ['a', 'b', 'd'])">Проверить ответ</button>
+                <div class="test-result" id="result2"></div>
+            </div>
+            
+            <div class="test-question">
+                <h3>Вопрос 3: Какие этические вызовы связаны с использованием ИТ в психоонкологии?</h3>
+                <div class="test-options">
+                    <div class="test-option">
+                        <input type="checkbox" name="q3" value="a"> a) Защита персональных данных
+                    </div>
+                    <div class="test-option">
+                        <input type="checkbox" name="q3" value="b"> b) Алгоритмическая предвзятость
+                    </div>
+                    <div class="test-option">
+                        <input type="checkbox" name="q3" value="c"> c) Цифровое неравенство
+                    </div>
+                    <div class="test-option">
+                        <input type="checkbox" name="q3" value="d"> d) Все перечисленные
+                    </div>
+                </div>
+                <button class="btn" onclick="checkMultipleAnswer(3, ['a', 'b', 'c', 'd'])">Проверить ответ</button>
+                <div class="test-result" id="result3"></div>
+            </div>
+            
+            <div class="card">
+                <h3>Интерактивное задание: Соотнесите подходы и их характеристики</h3>
+                <p>Перетащите характеристики к соответствующим методологическим подходам:</p>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <h4>Подходы:</h4>
+                        <div id="approaches-list" style="min-height: 200px;">
+                            <div class="drag-item" draggable="true" data-approach="system">Системный подход</div>
+                            <div class="drag-item" draggable="true" data-approach="cognitive">Когнитивный подход</div>
+                            <div class="drag-item" draggable="true" data-approach="resource">Ресурсный подход</div>
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 200px;">
+                        <h4>Характеристики:</h4>
+                        <div id="characteristics-list" style="min-height: 200px;">
+                            <div class="drag-item" draggable="true" data-approach="system">Рассматривает личность как сложную открытую систему</div>
+                            <div class="drag-item" draggable="true" data-approach="cognitive">Анализирует познавательные процессы оценки ситуации</div>
+                            <div class="drag-item" draggable="true" data-approach="resource">Акцентирует внимание на внутренних и внешних ресурсах личности</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="checkMatching()">Проверить соответствие</button>
+                <div class="test-result" id="matching-result"></div>
+            </div>
+        </section>
+        
+        <section id="materials">
+            <h2>Материалы для скачивания</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Презентация для защиты</h3>
+                    <p>Презентация, содержащая основные тезисы исследования для защиты работы.</p>
+                    <button class="btn" onclick="downloadFile('presentation')">Скачать презентацию</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Полный текст реферата</h3>
+                    <p>Реферат в формате PDF с полным содержанием исследования.</p>
+                    <button class="btn" onclick="downloadFile('abstract')">Скачать реферат (PDF)</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Редактируемая версия</h3>
+                    <p>Реферат в редактируемом формате DOCX для возможных доработок.</p>
+                    <button class="btn" onclick="downloadFile('editable')">Скачать реферат (DOCX)</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Интерактивная презентация</h3>
+                <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                    <div id="slide-container">
+                        <div id="slide1" class="slide active">
+                            <h3>Цель исследования</h3>
+                            <p>Проанализировать потенциал информационных технологий в исследовании и реализации стратегий преодоления кризисных событий у онкологических пациентов на этапе лечения.</p>
+                        </div>
+                        <div id="slide2" class="slide">
+                            <h3>Основные задачи</h3>
+                            <ul>
+                                <li>Анализ психологической природы кризисных состояний</li>
+                                <li>Исследование современных информационных технологий</li>
+                                <li>Выявление эффективных стратегий преодоления</li>
+                                <li>Оценка перспектив развития телереабилитации</li>
+                            </ul>
+                        </div>
+                        <div id="slide3" class="slide">
+                            <h3>Ключевые выводы</h3>
+                            <ul>
+                                <li>Информационные технологии объективизируют исследование копинг-стратегий</li>
+                                <li>Цифровые инструменты позволяют осуществлять динамический мониторинг состояния пациентов</li>
+                                <li>Перспективным направлением является развитие предиктивных моделей</li>
+                                <li>Необходимо учитывать этические аспекты использования ИТ в психоонкологии</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                        <button class="btn" id="prev-slide" onclick="changeSlide(-1)">Назад</button>
+                        <button class="btn" id="next-slide" onclick="changeSlide(1)">Вперед</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Масанская Мария Игоревна. Все права защищены.</p>
+            <p>Белорусский государственный педагогический университет имени Максима Танка</p>
+        </div>
+    </footer>
+
+    <script>
+        // Функция для переключения вкладок
+        function openTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            const tablinks = document.getElementsByClassName("tab");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Функции для проверки ответов в тестах
+        function checkAnswer(questionNum, correctAnswer) {
+            const selected = document.querySelector(`input[name="q${questionNum}"]:checked`);
+            const result = document.getElementById(`result${questionNum}`);
+            
+            if (!selected) {
+                result.innerHTML = "<p style='color: var(--accent);'>Пожалуйста, выберите ответ</p>";
+                result.style.display = "block";
+                return;
+            }
+            
+            if (selected.value === correctAnswer) {
+                result.innerHTML = "<p style='color: var(--success);'>Правильно!</p>";
+            } else {
+                result.innerHTML = "<p style='color: var(--accent);'>Неправильно. Попробуйте еще раз.</p>";
+            }
+            
+            result.style.display = "block";
+        }
+        
+        function checkMultipleAnswer(questionNum, correctAnswers) {
+            const selected = document.querySelectorAll(`input[name="q${questionNum}"]:checked`);
+            const result = document.getElementById(`result${questionNum}`);
+            
+            if (selected.length === 0) {
+                result.innerHTML = "<p style='color: var(--accent);'>Пожалуйста, выберите хотя бы один ответ</p>";
+                result.style.display = "block";
+                return;
+            }
+            
+            const selectedValues = Array.from(selected).map(input => input.value);
+            const isCorrect = correctAnswers.every(answer => selectedValues.includes(answer)) && 
+                             selectedValues.every(value => correctAnswers.includes(value));
+            
+            if (isCorrect) {
+                result.innerHTML = "<p style='color: var(--success);'>Правильно!</p>";
+            } else {
+                result.innerHTML = "<p style='color: var(--accent);'>Неправильно. Попробуйте еще раз.</p>";
+            }
+            
+            result.style.display = "block";
+        }
+        
+        // Функция для проверки соответствия в интерактивном задании
+        function checkMatching() {
+            const result = document.getElementById('matching-result');
+            // В реальном приложении здесь была бы логика проверки правильности сопоставления
+            result.innerHTML = "<p style='color: var(--success);'>Задание выполнено! Все соответствия установлены правильно.</p>";
+            result.style.display = "block";
+        }
+        
+        // Функции для работы с презентацией
+        let currentSlide = 0;
+        
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide].classList.remove('active');
+            
+            currentSlide += direction;
+            
+            if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            } else if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+            
+            slides[currentSlide].classList.add('active');
+        }
+        
+        // Функция для имитации загрузки файлов
+        function downloadFile(type) {
+            let fileName, message;
+            
+            switch(type) {
+                case 'presentation':
+                    fileName = "Презентация_защита.pptx";
+                    message = "Презентация будет загружена";
+                    break;
+                case 'abstract':
+                    fileName = "Реферат_ИТ_в_психоонкологии.pdf";
+                    message = "Реферат в формате PDF будет загружен";
+                    break;
+                case 'editable':
+                    fileName = "Реферат_ИТ_в_психоонкологии.docx";
+                    message = "Редактируемая версия реферата будет загружена";
+                    break;
+            }
+            
+            alert(`${message}. В реальном приложении здесь началась бы загрузка файла: ${fileName}`);
+        }
+        
+        // Добавляем функциональность перетаскивания для интерактивного задания
+        document.addEventListener('DOMContentLoaded', function() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            
+            dragItems.forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    e.dataTransfer.setData('text/plain', e.target.dataset.approach);
+                });
+                
+                item.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                });
+                
+                item.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    const data = e.dataTransfer.getData('text/plain');
+                    
+                    // В реальном приложении здесь была бы логика проверки правильности перетаскивания
+                    // и визуальная обратная связь
+                });
+            });
+        });
+    </script>
+</body>
+</html>
